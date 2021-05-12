@@ -1,5 +1,25 @@
-.App {
+body {
   text-align: center;
+  background-color: #000;
+  background-image: url(./rene-bohmer-YeUVDKZWSZ4-unsplash.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 3000px;
+  color: #fff;
+}
+body:after {
+  content: '';
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body * {
+  position: relative;
+  z-index: 1;
 }
 
 .App-logo {

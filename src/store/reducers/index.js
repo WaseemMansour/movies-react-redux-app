@@ -8,15 +8,16 @@ import {
 const moviesInitialState = {
   userMovies: {
     list: [],
-    page: 1,
     isLoading: false,
-    error: null
+    error: null,
+    page: 1,
   },
   moviesdb: {
     list: [],
-    page: 1,
     isLoading: false,
-    error: null
+    error: null,
+    page: 1,
+    totalPages: 1
   }
 }
 
@@ -31,7 +32,6 @@ export default function form (state = moviesInitialState, action) {
           isLoading: action.isLoading,
           error: null
         }
-        
       }
 
     case MOVIES_GET_LIST_RESPONSE:
@@ -41,10 +41,12 @@ export default function form (state = moviesInitialState, action) {
           ...state.moviesdb,
           list: [
             ...state.moviesdb.list,
-            action.list
+            ...action.list
           ],
+          page: state.moviesdb.page + 1,
           isLoading: false,
-          error: action.error
+          error: null,
+          totalPages: action.totalPages
         }
       }
 
