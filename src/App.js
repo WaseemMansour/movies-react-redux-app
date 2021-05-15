@@ -1,16 +1,41 @@
 import { useEffect } from 'react';
-import './App.css';
 import { fetchMovies } from './store/actions/movies';
 import { useDispatch } from 'react-redux'
+import Header from './components/Header/Header';
+import './App.scss';
+import { Route, Switch } from 'react-router';
+import Home from './pages/Home';
+import AddMovie from './pages/AddMovie';
 
 function App() {
-  const dispatch = useDispatch()
+  
+  const dispatch = useDispatch();
+  
   useEffect(()=>{
-    dispatch(fetchMovies(1));
+    dispatch(fetchMovies(2));
   }, [dispatch])
+
   return (
     <div className="App">
-      <h1>Movies Showtime</h1>  
+      <Header />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(props)=> (
+            <Home { ...props } />
+          )}
+        />
+
+        <Route
+          exact
+          path="/add-movie"
+          render={(props)=> (
+            <AddMovie { ...props } />
+          )}
+        />
+      </Switch>
+      
     </div>
   );
 }

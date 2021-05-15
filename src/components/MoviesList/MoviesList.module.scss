@@ -1,0 +1,36 @@
+.moviesSection {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+
+  &_title {
+    margin-bottom: 1rem;
+  }
+
+  &_btn {
+    background-color: red !important;
+    border-color: red !important;
+    position: absolute;
+    right: 15px;
+    top: 3px;
+    
+    &:hover, &:focus, &:active {
+      background-color: red;
+    }
+  }
+
+  &_list {
+    padding: 0;
+    margin: 0;
+    margin: 0 auto 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+  }
+  
+  
+
+  hr {
+    background-color: red;
+  }
+}

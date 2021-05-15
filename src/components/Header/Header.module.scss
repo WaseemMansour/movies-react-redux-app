@@ -1,0 +1,53 @@
+.header {
+  position: relative;
+  height: 70vh;
+  margin-bottom: 3rem;
+  
+  div {
+    height: 100%;
+  }
+
+  &:before {
+    content: '';
+    text-align: center;
+    background-color: #222;
+    background-image: url(../../avengers-wallpaper-banner2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  // &:after {
+  //   content: '';
+  //   background: rgb(0,0,0);
+  //   background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  //   position: absolute;
+  //   top: calc(70vh - 280px);
+  //   height: 280px;
+  //   right: 0;
+  //   bottom: 0;
+  //   left: 0;
+  // }
+  
+  &_appTitle {
+    font-family: Changa, sans-serif;
+    position: relative;
+    top: 90%;
+    font-size: 3rem;
+    margin-bottom: 0;
+
+    span {
+      color: #fff;
+      background-color: red;
+      padding: 0.2rem 1rem;
+      border-radius: 10px;
+      display: inline-block;
+      line-height: 3rem;
+    }
+  }
+}
