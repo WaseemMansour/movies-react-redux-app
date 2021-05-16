@@ -1,36 +1,91 @@
+import React, { useCallback, useRef } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import { setPageNum } from '../../store/actions/movies';
+import { connect, useDispatch } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import styles from './MoviesList.module.scss';
+import { Link } from 'react-router-dom';
 
-const MoviesList = ({title, data, canAddToList}) => (
-  <section className={styles.moviesSection}>
-    <Container>
-      <Row>
-        <Col>
-          <header>
-            <h2 className={styles.moviesSection_title}>{title}</h2>
+const MoviesList = ({title, data, canAddToList, infiniteScroll, isLoading, page, totalPages}) => { 
+  const dispatch = useDispatch();
+  const observer = useRef();
+  const lastMovieElementRef = useCallback(node => {
+
+    if (isLoading) return;
+    if(observer.current) observer.current.disconnect();
+    
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        if(page <= totalPages) {
+          dispatch(setPageNum('moviesdb', page + 1));
+        }
+      }
+    }, {threshold: 1});
+
+    // Observe If Last Element with Ref
+    if (node) {
+      observer.current.observe(node);
+    }
+    
+  }, [isLoading, page, totalPages, dispatch])
+  
+  return (
+    <section className={styles.moviesSection}>
+      <Container>
+        <Row>
+          <Col>
+            <header>
+              <h2 className={styles.moviesSection_title}>{title}</h2>
+              {
+                canAddToList 
+                ? <Link to="/add-movie">
+                    <Button className={styles.moviesSection_btn}><i className="fa fa-plus"></i> Add Movie</Button>
+                  </Link>
+                : null
+              }
+              <hr />
+            </header>
             {
-              canAddToList 
-              ? <Button className={styles.moviesSection_btn}><i className="fa fa-plus"></i> Add Movie</Button> 
+              canAddToList && !data.length
+              ? <p>Add your own movies to this list.</p>
+              : <ul className={styles.moviesSection_list}>
+                  {data.map((movie, index) => {
+                    // Add Ref to Last MovieCard Element
+                    if (data.length === index + 1) {
+                      const MovieCardWithRef = React.forwardRef((props, ref) => (
+                        <MovieCard {...props} innerRef={ref} />
+                      ));
+                      return <MovieCardWithRef ref={lastMovieElementRef} key={`${movie.id}-${movie.title}`} movie={movie} className={styles.moviesSection_movieCard} />
+                    } else {
+                      return <MovieCard key={movie.id} movie={movie} className={styles.moviesSection_movieCard} />
+                    }
+                    
+                  })}
+                </ul>
+              }
+
+            {
+              infiniteScroll && isLoading
+              ? <div className={styles.spinner}>
+                  <div className={styles.spinnerIcon}></div>
+                </div>
               : null
             }
-            <hr />
-          </header>
-          {
-            canAddToList && !data.length
-            ? <p>Add your own movies to this list.</p>
-            : <ul className={styles.moviesSection_list}>
-                {data.map(movie => (
-                  <MovieCard key={movie.id} movie={movie} className={styles.moviesSection_movieCard} />
-                ))}
-              </ul>
-          }
 
-        </Col>
-      </Row>
-    </Container>
-    
-  </section>
-)
+          </Col>
+        </Row>
+      </Container>
+      
+    </section>
+  )
+};
 
-export default MoviesList;
+const mapStateToProps = ({moviesdb: {isLoading, page, totalPages}}) => {
+  return {
+    isLoading, 
+    page, 
+    totalPages
+  }
+}
+
+export default connect(mapStateToProps)(MoviesList);

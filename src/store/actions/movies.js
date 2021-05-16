@@ -3,6 +3,7 @@ export const ADD_MOVIE = 'ADD_MOVIE';
 export const MOVIES_GET_LIST_REQUEST = 'MOVIES_GET_LIST_REQUEST';
 export const MOVIES_GET_LIST_RESPONSE = 'MOVIES_GET_LIST_RESPONSE';
 export const MOVIES_GET_LIST_FAILURE = 'MOVIES_GET_FAILURE';
+export const CHANGE_PAGE_NUMBER = 'CHANGE_PAGE_NUMBER';
 
 export const API_BASE = process.env.REACT_APP_API_URL;
 export const API_KEY = process.env.REACT_APP_API_KEY;
@@ -39,5 +40,13 @@ export const fetchMovies = pageNum => {
       .catch(error => {
         dispatch(fetchMoviesFailure(error))
       })
+  }
+}
+
+export const setPageNum = (listName, pageNum) => {
+  return {
+    type: CHANGE_PAGE_NUMBER,
+    listName,
+    pageNum
   }
 }

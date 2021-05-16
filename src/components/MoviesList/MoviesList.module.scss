@@ -28,9 +28,23 @@
     list-style: none;
   }
   
-  
-
   hr {
     background-color: red;
+  }
+
+  .listBottom {
+    width: 100%;
+    height: 50px;
+  }
+
+  .spinner {
+    text-align: center;
+    
+    .spinnerIcon {
+      background-image: url(../../ajax-loader3.gif);
+      width: 42px;
+      height: 42px;
+      display: inline-block;
+    }
   }
 }

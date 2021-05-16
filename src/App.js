@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { fetchMovies } from './store/actions/movies';
-import { useDispatch } from 'react-redux'
+// import { useEffect } from 'react';
+// import { fetchMovies } from './store/actions/movies';
+// import { useDispatch } from 'react-redux'
 import Header from './components/Header/Header';
 import './App.scss';
 import { Route, Switch } from 'react-router';
@@ -9,11 +9,6 @@ import AddMovie from './pages/AddMovie';
 
 function App() {
   
-  const dispatch = useDispatch();
-  
-  useEffect(()=>{
-    dispatch(fetchMovies(2));
-  }, [dispatch])
 
   return (
     <div className="App">

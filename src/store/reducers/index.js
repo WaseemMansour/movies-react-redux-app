@@ -2,7 +2,8 @@ import {
   MOVIES_GET_LIST_REQUEST,
   MOVIES_GET_LIST_RESPONSE,
   MOVIES_GET_LIST_FAILURE,
-  ADD_MOVIE
+  ADD_MOVIE,
+  CHANGE_PAGE_NUMBER
 } from '../actions/movies';
 
 const moviesInitialState = {
@@ -11,12 +12,15 @@ const moviesInitialState = {
     isLoading: false,
     error: null,
     page: 1,
+    prevPage: 0,
+    totalPages: 1
   },
   moviesdb: {
     list: [],
     isLoading: false,
     error: null,
     page: 1,
+    prevPage: 0,
     totalPages: 1
   }
 }
@@ -29,7 +33,7 @@ export default function form (state = moviesInitialState, action) {
         ...state,
         moviesdb: {
           ...state.moviesdb,
-          isLoading: action.isLoading,
+          isLoading: true,
           error: null
         }
       }
@@ -43,7 +47,7 @@ export default function form (state = moviesInitialState, action) {
             ...state.moviesdb.list,
             ...action.list
           ],
-          page: state.moviesdb.page + 1,
+          prevPage: state.moviesdb.page,
           isLoading: false,
           error: null,
           totalPages: action.totalPages
@@ -59,6 +63,17 @@ export default function form (state = moviesInitialState, action) {
           error: action.error
         }
       }
+
+    case CHANGE_PAGE_NUMBER:
+      // debugger
+      return {
+        ...state,
+        [action.listName]: {
+          ...state[action.listName],
+          page: action.pageNum
+        }
+      }
+
     case ADD_MOVIE:
       return {
         ...state,

@@ -1,14 +1,14 @@
 import styles from './MovieCard.module.scss';
 import posterPlaceholder from '../../poster_placeholder.png';
 
-const MovieCard = ({movie}) => (
-  <article className={styles.movieCard}>
+const MovieCard = ({movie, innerRef}) => (
+  <article className={styles.movieCard} ref={innerRef}>
     <div 
       className={styles.moviePoster} 
       style={{backgroundImage: `url(${movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : posterPlaceholder })`}}
     >
       <div className={styles.movieRateAndYear}>
-        <span>{movie.release_date.split('-')[0]}</span>
+        <span>{movie.release_date?movie.release_date.split('-')[0]:''}</span>
         <span><i className="fas fa-star"></i> {movie.vote_average} /10</span>
       </div>
       <div className={styles.movieOverview}>
