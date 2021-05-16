@@ -1,0 +1,12 @@
+.movieForm {
+  
+  margin-bottom: 4rem;
+  .invalid-feedback {
+    display: block !important;
+  }
+
+  button {
+    background-color: red !important;
+    border-color: red !important;
+  }
+}

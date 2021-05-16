@@ -51,13 +51,13 @@ const MoviesList = ({title, data, canAddToList, infiniteScroll, isLoading, page,
               : <ul className={styles.moviesSection_list}>
                   {data.map((movie, index) => {
                     // Add Ref to Last MovieCard Element
-                    if (data.length === index + 1) {
+                    if (data.length === index + 1 && data.length >= 20) {
                       const MovieCardWithRef = React.forwardRef((props, ref) => (
                         <MovieCard {...props} innerRef={ref} />
                       ));
-                      return <MovieCardWithRef ref={lastMovieElementRef} key={`${movie.id}-${movie.title}`} movie={movie} className={styles.moviesSection_movieCard} />
+                      return <MovieCardWithRef ref={lastMovieElementRef} key={`${movie.title}-${movie.release_date}`} movie={movie} className={styles.moviesSection_movieCard} />
                     } else {
-                      return <MovieCard key={movie.id} movie={movie} className={styles.moviesSection_movieCard} />
+                      return <MovieCard key={`${movie.title}-${movie.release_date}`} movie={movie} md="6" className={`${styles.moviesSection_movieCard} md-4`} />
                     }
                     
                   })}

@@ -8,6 +8,13 @@ export const CHANGE_PAGE_NUMBER = 'CHANGE_PAGE_NUMBER';
 export const API_BASE = process.env.REACT_APP_API_URL;
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
+export const addMovie = movie => {
+  return {
+    type: ADD_MOVIE,
+    movie
+  }
+}
+
 export const fetchMoviesRequest = _ => {
   return {
     type: MOVIES_GET_LIST_REQUEST
