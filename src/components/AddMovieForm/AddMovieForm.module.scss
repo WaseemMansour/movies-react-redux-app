@@ -1,12 +1,14 @@
-.movieForm {
-  
+@import '../../variables.scss';
+
+.movieForm {  
   margin-bottom: 4rem;
+  
   .invalid-feedback {
     display: block !important;
   }
 
   button {
-    background-color: red !important;
-    border-color: red !important;
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
   }
 }

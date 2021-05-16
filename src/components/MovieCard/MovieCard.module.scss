@@ -1,20 +1,14 @@
+@import '../../variables.scss';
+
 .movieCard {
-  background: #111;
+  background: $secondary-color;
   color: white;
   font-weight: bold;
   text-align: center;
-  margin: 0 1.25em 2em 0;
+  margin: 0 0 2em 0;
   height: 455px;
   border-radius: 5px;
   overflow: hidden;
-
-  // &:first-child, &:nth-child(5n) {
-  //   margin-left: 0;
-  // }
-
-  // &:nth-child(4n) {
-  //   margin-right: 0;
-  // }
 
   .moviePoster {
     height: 375px;
@@ -25,7 +19,7 @@
     position: relative;
 
     .movieRateAndYear {
-      background: rgba(255,0,0,0.75);
+      background: rgba($primary-color,0.75);
       position: absolute;
       left: 0;
       right: 0;
@@ -77,37 +71,6 @@
       margin-bottom: 0;
       justify-self: center;
       align-self: center;
-    }
-  }
-
-  // whatever the breakpoints are that scaffold has set.
-  @media screen and (max-width: 639px) {
-    width: 80%;
-    margin-right: 10%;
-    margin-left: 10% !important;
-  }
-  
-  @media screen and (min-width: 640px) and (max-width: 991px) {
-    width: calc(50% - 1em);
-
-    &:first-child, &:nth-child(3n) {
-      margin-left: 0;
-    }
-  
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-  }
-
-  @media screen and (min-width: 992px) {
-    width: calc(25% - 1em);
-
-    &:first-child, &:nth-child(5n) {
-      margin-left: 0;
-    }
-  
-    &:nth-child(4n) {
-      margin-right: 0;
     }
   }
 

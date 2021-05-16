@@ -1,9 +1,6 @@
-// import { useEffect } from 'react';
-// import { fetchMovies } from './store/actions/movies';
-// import { useDispatch } from 'react-redux'
 import Header from './components/Header/Header';
 import './App.scss';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import Home from './pages/Home';
 import AddMovie from './pages/AddMovie';
 
@@ -29,6 +26,8 @@ function App() {
             <AddMovie { ...props } />
           )}
         />
+
+        <Redirect from="*" to="/" />
       </Switch>
       
     </div>

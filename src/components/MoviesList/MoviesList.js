@@ -16,6 +16,7 @@ const MoviesList = ({title, data, canAddToList, infiniteScroll, isLoading, page,
     
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
+        // To avoid calling previous page - In case Back from Add New Movie Route
         if(page <= totalPages) {
           dispatch(setPageNum('moviesdb', page + 1));
         }
