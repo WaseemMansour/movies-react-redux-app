@@ -7,7 +7,7 @@ const Header = _ => (
     <Container>
       <Row>
         <Col>
-          <h1 className={styles.header_appTitle}><Link to="/"><span><i className="fas fa-film"></i> Movies</span> App</Link></h1>
+          <h1 className={styles.header_appTitle} data-testid="logo"><Link to="/"><span><i className="fas fa-film"></i> Movies</span> App</Link></h1>
         </Col>
       </Row>
     </Container>

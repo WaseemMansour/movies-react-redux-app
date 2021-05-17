@@ -1,6 +1,6 @@
-import { act, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { renderWithRouter } from '../utils/testsUtils';
 import Header from '../components/Header/Header';
 
 describe('Header Component', () => {
@@ -16,13 +16,20 @@ describe('Header Component', () => {
     container = null
   })
   
-  it('Should render Header on any route', () => {
-    // Act
-    act(() => {
-      render(<BrowserRouter><Header /></BrowserRouter>, container);
-    });
+  it('Should render Header properly', () => {
+    renderWithRouter(<Header />);
     // Assert
     expect(screen.getByTestId('headerComponentView')).toBeInTheDocument();
+  });
+  
+  it('Should navigate to Home When Logo clicked', () => {
+    const { getByTestId, history } = renderWithRouter(<Header />, { route: '/add-movie'});
+    const logo = getByTestId('logo');
+    const logoLink = logo.querySelector('a');
+    
+    // Assert
+    fireEvent.click(logoLink);
+    expect(history.location.pathname).toBe('/');
   });
   
 });
