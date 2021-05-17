@@ -2,7 +2,7 @@ import styles from './MovieCard.module.scss';
 import posterPlaceholder from '../../poster_placeholder.png';
 
 const MovieCard = ({movie, innerRef}) => (
-  <article className={styles.movieCard} ref={innerRef}>
+  <article data-testid="movieCardView" className={styles.movieCard} ref={innerRef}>
     <div 
       className={styles.moviePoster} 
       style={{backgroundImage: `url(${movie.poster_path ? movie.poster_path.includes('base64') ? movie.poster_path : `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : posterPlaceholder })`}}
