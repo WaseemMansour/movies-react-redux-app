@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const Header = _ => (
-  <header className={styles.header}>
+  <header className={styles.header} data-testid="headerComponentView">
     <Container>
       <Row>
         <Col>

@@ -14,10 +14,10 @@ const Home = ({moviesdb, userMovies}) => {
 
   
   return (
-  <>
+  <div data-testid="homePageView">
     <MoviesList title="My Movies" data={userMovies.list} canAddToList={true} />
     <MoviesList title="All Movies" data={moviesdb.list} infiniteScroll={true} />  
-  </>
+  </div>
 )}
 
 const mapStateToProps = ({moviesdb, userMovies}) => {
