@@ -37,15 +37,15 @@ export const fetchMoviesFailure = error => {
 }
 
 export const fetchMovies = pageNum => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(fetchMoviesRequest());
-    axios.get(`${API_BASE}/discover/movie?page=${pageNum}&api_key=${API_KEY}`)
+    return axios.get(`${API_BASE}/discover/movie?page=${pageNum}&api_key=${API_KEY}`)
       .then(response => {
         const { data } = response;
         dispatch(fetchMoviesSuccess(data))
       })
       .catch(error => {
-        dispatch(fetchMoviesFailure(error))
+        dispatch(fetchMoviesFailure(error.message))
       })
   }
 }
