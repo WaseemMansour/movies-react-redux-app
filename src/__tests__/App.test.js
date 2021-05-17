@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
-import App from './App';
-import AddMovie from './pages/AddMovie';
-import Home from './pages/Home';
+import App from '../App';
+import AddMovie from '../pages/AddMovie';
+import Home from '../pages/Home';
 
-import store from './store';
+import store from '../store';
 
 describe('Main App Component', () => {
   it('Should render Header on any route', () => {
