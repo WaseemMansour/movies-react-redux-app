@@ -31,7 +31,7 @@ const MoviesList = ({title, data, canAddToList, infiniteScroll, isLoading, page,
   }, [isLoading, page, totalPages, dispatch])
   
   return (
-    <section className={styles.moviesSection}>
+    <section data-testid="moviesListView" className={styles.moviesSection}>
       <Container>
         <Row>
           <Col>
@@ -67,7 +67,7 @@ const MoviesList = ({title, data, canAddToList, infiniteScroll, isLoading, page,
 
             {
               infiniteScroll && isLoading
-              ? <div className={styles.spinner}>
+              ? <div data-testid="spinnerView" className={styles.spinner}>
                   <div className={styles.spinnerIcon}></div>
                 </div>
               : null

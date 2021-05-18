@@ -41,7 +41,7 @@ const AddMovieForm = _ => {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className={styles.movieForm} noValidate>
+    <Form data-testid="addMovieFormView" onSubmit={handleSubmit(onSubmit)} className={styles.movieForm} noValidate>
       <Row>
         <Col md="6">
           <Form.Group controlId="formControlMovieName">
@@ -54,7 +54,7 @@ const AddMovieForm = _ => {
               />
             {
               errors.title 
-              && <Form.Control.Feedback type="invalid" style={{display:'block'}}>
+              && <Form.Control.Feedback role="alert" type="invalid" style={{display:'block'}}>
                   Required Field
                 </Form.Control.Feedback>
             }
@@ -71,7 +71,7 @@ const AddMovieForm = _ => {
               />
             {
               errors.year 
-              && <Form.Control.Feedback type="invalid">
+              && <Form.Control.Feedback role="alert" type="invalid">
                   Required Field
                 </Form.Control.Feedback>
             }
@@ -89,7 +89,7 @@ const AddMovieForm = _ => {
               />
             {
               errors.overview 
-              && <Form.Control.Feedback type="invalid">
+              && <Form.Control.Feedback role="alert" type="invalid">
                   Required Field
                 </Form.Control.Feedback>
             }
@@ -97,7 +97,8 @@ const AddMovieForm = _ => {
         </Col>
         <Col md="6">
           <Form.Group>
-            <Form.File 
+            <Form.File
+              data-testid="posterUploadInput" 
               {...register("poster")}
               id="formControlFile"
               label="Movie Poster"
@@ -106,7 +107,7 @@ const AddMovieForm = _ => {
               />
             {
               errors.poster
-              && <Form.Control.Feedback type="invalid">
+              && <Form.Control.Feedback role="alert" type="invalid">
                   Required Field
                 </Form.Control.Feedback>
             }  
@@ -115,7 +116,7 @@ const AddMovieForm = _ => {
       </Row>
       <Row>
         <Col>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button data-testid="movieSubmitBtn" type="submit" className="btn btn-primary">Submit</button>
         </Col>
       </Row>  
     </Form>  

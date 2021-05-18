@@ -52,7 +52,7 @@ describe('Main App Component', () => {
     )
   
     // Assert
-    expect(screen.getByText('Add New Movie')).toBeInTheDocument();
+    expect(screen.getByTestId('addMovieFormView')).toBeInTheDocument();
   });
   
 });
